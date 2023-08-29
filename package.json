@@ -1,0 +1,15 @@
+{
+  "name": "down_with_oop_yeah_you_know_me_challenge_",
+  "version": "1.0.0",
+  "description": "SVG logo generator app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Melissa Kalish",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^9.2.10",
+    "jest": "^29.6.4"
+  }
+}
