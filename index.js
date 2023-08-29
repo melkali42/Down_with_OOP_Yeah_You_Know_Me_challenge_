@@ -1,68 +1,75 @@
+const inquirer = require("inquirer");
 const fs = require('fs');
-const inquirer = require('inquirer');
-const {Shape, Circle, Square, Triangle } = require("./lib/shapes.test");
 
-function generateLogoSVG(color, shape, text) {
-    const svgContent = generateSVGContent(color, shape, text);
-  return svgContent;
-}
+//Question prompts for the user to answer
+const questionPrompts = [
+    {
+        type:"input",
+        message: "Please enter logo text (Note must be three characers only).",
+        name: "logoText",
+            validate: function(input){
+            if (input.length > 3){
+                return "Logo text must be only three characters.";
+            }
+            return true;
+        }
+    },
+    {
+        type:"input",
+        message: "Enter logo text color value.",
+        name: "logoTextColor",
+    },
+    {
+        type: "list",
+        message: "What shape would you like the logo to have",
+        choices: ["Circle", "Triangle", "Square"],
+        name: "logoShape",
+    },
+    {
+        type:"input",
+        message: "Enter shape color value",
+        name: "logoShapeColor",
+    },
+]
 
-function saveSVGToFile(svgContent, filename) {
-  fs.writeFile(filename, svgContent, (err) => {
-    if (err) {
-      console.error('Error saving SVG file:', err);
-    } else {
-      console.log(`Logo saved to ${filename}`);
+function init(){
+    inquirer.prompt(questionPrompts).then((answers) => {
+    const {Triangle, Circle, Shape } = require('./lib/shapes');
+    let shape;
+    switch (answers.logoShape) {
+    case 'Circle':
+        shape = new Circle(answers.logoShapeColor,answers.logoTextColor, answers.logoText);
+        break;
+    case 'Triangle':
+        shape = new Triangle(answers.logoShapeColor,answers.logoTextColor, answers.logoText);
+        break;
+    case 'Square':
+        shape = new Shape(answers.logoShapeColor,answers.logoTextColor, answers.logoText);
+        break;
+    default:
+        console.log('Invalid shape selection.');
+        return;
     }
-  });
-}
 
-// Function to start the logo generation process
-function generateLogo() {
-  inquirer
-    .prompt([
-      {
-        type: 'list',
-        name: 'color',
-        message: 'Select a color:',
-        choices: ['red', 'blue', 'green'], 
-      },
-      {
-        type: 'list',
-        name: 'shape',
-        message: 'Select a shape:',
-        choices: ['circle', 'square', 'triangle'], 
-      },
-      {
-        type: 'input',
-        name: 'text',
-        message: 'Enter text for the logo:',
-        validate: (input) => input.trim() !== '',
-      },
-      {
-        type: 'input',
-        name: 'filename',
-        message: 'Enter the filename to save the SVG:',
-        default: 'logo.svg',
-        validate: (input) => input.trim() !== '',
-      },
-    ])
-    .then((answers) => {
-      const { color, shape, text, filename } = answers;
-      const svgContent = generateLogoSVG(color, shape, text);
-      saveSVGToFile(svgContent, filename);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
+    const shapeTemp = shape.render();
+    
+  writeToFile("./examples/newShape.svg" , generateShape(shapeTemp))
     });
 }
 
-generateLogo(); 
+function generateShape(shape) {
+    return `
+    <svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
+         ${shape}
+         
+    </svg>
+    `;
+}
 
-// function generateSVGContent(color, shape, text) {
-//     return `
-// <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-//   <rect width="100%" height="100%" fill="${color}" />
-//   <text x="10" y="50" fill="white">${text}</text>
-// </svg>`;
-// }
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) =>
+    err ? console.error(err) : console.log('Shape generation is successful!')
+    );
+}
+
+init();
