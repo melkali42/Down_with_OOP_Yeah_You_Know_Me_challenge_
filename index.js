@@ -1,4 +1,5 @@
-const inquirer = require("inquirer");
+// const inquirer = require("inquirer");
+import { input } from '@inquirer/prompts';
 const fs = require('fs');
 
 //Question prompts for the user to answer
@@ -33,7 +34,7 @@ const questionPrompts = [
 ]
 
 function generateLogo(){
-    inquirer.prompt(questionPrompts).then((answers) => {
+    input(questionPrompts).then((answers) => {
     const {Triangle, Circle, Shape } = require('./lib/shapes');
     let shape;
     switch (answers.logoShape) {
