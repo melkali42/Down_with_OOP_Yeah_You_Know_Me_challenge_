@@ -32,7 +32,7 @@ const questionPrompts = [
     },
 ]
 
-function init(){
+function generateLogo(){
     inquirer.prompt(questionPrompts).then((answers) => {
     const {Triangle, Circle, Shape } = require('./lib/shapes');
     let shape;
@@ -60,16 +60,15 @@ function init(){
 function generateShape(shape) {
     return `
     <svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
-         ${shape}
-         
+         ${shape} 
     </svg>
     `;
 }
 
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) =>
-    err ? console.error(err) : console.log('Shape generation is successful!')
+     console.error(err), console.log('Shape generation is successful!')
     );
 }
 
-init();
+generateLogo();
