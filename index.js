@@ -34,7 +34,7 @@ const questionPrompts = [
 
 function generateLogo(){
     inquirer.prompt(questionPrompts).then((answers) => {
-    const {Triangle, Circle, Shape } = require('./lib/shapes');
+    const {Triangle, Circle, Square, Shape } = require('./lib/shapes');
     let shape;
     switch (answers.logoShape) {
     case 'Circle':
@@ -44,7 +44,7 @@ function generateLogo(){
         shape = new Triangle(answers.logoShapeColor,answers.logoTextColor, answers.logoText);
         break;
     case 'Square':
-        shape = new Shape(answers.logoShapeColor,answers.logoTextColor, answers.logoText);
+        shape = new Square(answers.logoShapeColor,answers.logoTextColor, answers.logoText);
         break;
     default:
         console.log('Invalid shape selection.');
