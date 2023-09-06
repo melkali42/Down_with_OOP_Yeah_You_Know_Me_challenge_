@@ -27,7 +27,7 @@ This is the link for the walkthrough video demonstrating the functionality of th
 
 ![Screenshot1](https://github.com/melkali42/Down_with_OOP_Yeah_You_Know_Me_challenge_/blob/main/images/node%20index.js%20prompts.PNG)
 ![Screenshot2](https://github.com/melkali42/Down_with_OOP_Yeah_You_Know_Me_challenge_/blob/main/images/Circle%20SVG%20example.PNG)
-![Screenshot3](https://github.com/melkali42/Down_with_OOP_Yeah_You_Know_Me_challenge_/blob/main/images/Circle%20SVG%20example.PNG)
+![Screenshot3](https://github.com/melkali42/Down_with_OOP_Yeah_You_Know_Me_challenge_/blob/main/images/Square%20SVG%20example.PNG)
 ![Screenshot4](https://github.com/melkali42/Down_with_OOP_Yeah_You_Know_Me_challenge_/blob/main/images/Triangle%20example.PNG)
 
 ## Credits
