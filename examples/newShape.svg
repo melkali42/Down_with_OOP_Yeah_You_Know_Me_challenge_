@@ -1,6 +1,6 @@
 
     <svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
-         <rect x="75" y="40" width="160" height="160" fill="green" />
-                  <text x="150" y="115" text-anchor="middle" fill="blue">MAK</text> 
+         <rect x="75" y="40" width="160" height="160" fill="pink" />
+                  <text x="150" y="115" text-anchor="middle" fill="purple">MAK</text> 
     </svg>
     
